@@ -5,7 +5,7 @@
  */
 
 import type { Metadata } from "next";
-import Link from "next/link";
+import Header from "@/components/Header";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -20,27 +20,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        <nav className="bg-white shadow-sm border-b">
-          <div className="container mx-auto px-4">
-            <div className="flex justify-between items-center h-16">
-              <Link href="/" className="text-xl font-bold text-gray-900">
-                getVolunteers
-              </Link>
-              <div className="flex space-x-6">
-                <Link href="/volunteers" className="text-gray-600 hover:text-gray-900">
-                  Volunteers
-                </Link>
-                <Link href="/needs" className="text-gray-600 hover:text-gray-900">
-                  Opportunities
-                </Link>
-                <Link href="/auth" className="text-gray-600 hover:text-gray-900">
-                  Sign In
-                </Link>
-              </div>
-            </div>
-          </div>
-        </nav>
+      <body className="antialiased bg-[#F7F7F7]">
+        <Header />
         {children}
       </body>
     </html>

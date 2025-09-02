@@ -35,50 +35,50 @@ export default function NeedsPage() {
   if (error) return <div className="p-8 text-center text-red-600">{error}</div>;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Volunteer Opportunities</h1>
+    <div className="min-h-screen bg-[#F7F7F7]">
+      <div className="container mx-auto px-4 py-6 sm:py-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-[#2E2E2E] mb-6 sm:mb-8">Volunteer Opportunities</h1>
         
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {needs.map((need) => (
-            <div key={need.id} className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-xl font-semibold text-gray-900">
+            <div key={need.id} className="bg-white rounded-lg shadow-md p-4 sm:p-6 border border-gray-100 hover:shadow-lg transition-shadow">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 sm:mb-4">
+                <h3 className="text-lg sm:text-xl font-semibold text-[#2E2E2E] mb-2 sm:mb-0 pr-0 sm:pr-4">
                   {need.title}
                 </h3>
-                <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                <span className={`self-start px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold text-white ${
                   need.format === 'virtual' 
-                    ? 'bg-blue-100 text-blue-800' 
-                    : 'bg-green-100 text-green-800'
+                    ? 'bg-[#4ECDC4]' 
+                    : 'bg-[#FF6B6B]'
                 }`}>
                   {need.format}
                 </span>
               </div>
               
-              <p className="text-gray-600 mb-4">{need.description}</p>
+              <p className="text-sm sm:text-base text-[#2E2E2E] opacity-80 mb-3 sm:mb-4">{need.description}</p>
               
-              <div className="grid md:grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
                 {need.required_skills && (
                   <div>
-                    <p className="text-sm font-medium text-gray-700">Required Skills:</p>
-                    <p className="text-sm text-gray-600">{need.required_skills}</p>
+                    <p className="text-xs sm:text-sm font-medium text-[#FF6B6B]">Required Skills:</p>
+                    <p className="text-xs sm:text-sm text-[#2E2E2E] opacity-80">{need.required_skills}</p>
                   </div>
                 )}
                 {need.required_tasks && (
                   <div>
-                    <p className="text-sm font-medium text-gray-700">Tasks:</p>
-                    <p className="text-sm text-gray-600">{need.required_tasks}</p>
+                    <p className="text-xs sm:text-sm font-medium text-[#FF6B6B]">Tasks:</p>
+                    <p className="text-xs sm:text-sm text-[#2E2E2E] opacity-80">{need.required_tasks}</p>
                   </div>
                 )}
               </div>
               
-              <div className="flex justify-between items-center text-sm text-gray-600">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center text-xs sm:text-sm text-[#2E2E2E] opacity-70 space-y-1 sm:space-y-0">
                 <span>Volunteers needed: {need.num_volunteers_needed}</span>
-                <span>Contact: {need.contact_name}</span>
+                <span className="break-words">Contact: {need.contact_name}</span>
               </div>
               
               {need.location_details && (
-                <p className="text-sm text-gray-600 mt-2">📍 {need.location_details}</p>
+                <p className="text-xs sm:text-sm text-[#2E2E2E] opacity-70 mt-2">📍 {need.location_details}</p>
               )}
             </div>
           ))}
@@ -86,7 +86,7 @@ export default function NeedsPage() {
 
         {needs.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-600">No volunteer opportunities found.</p>
+            <p className="text-[#2E2E2E] opacity-70">No volunteer opportunities found.</p>
           </div>
         )}
       </div>
