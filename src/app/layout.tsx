@@ -11,6 +11,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "getVolunteers - Connect with Volunteer Opportunities",
   description: "Connecting volunteers with meaningful opportunities to make a difference in their communities.",
+  icons: {
+    icon: '/favicon.png',
+  },
 };
 
 export default function RootLayout({

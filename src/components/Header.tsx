@@ -69,7 +69,7 @@ export default function Header() {
             {!isLoggedIn && (
               <Link
                 href="/auth"
-                className="bg-[#FF6B6B] text-white px-4 py-2 rounded-lg hover:bg-[#e55555] transition-colors"
+                className="bg-[#4ECDC4] text-white px-4 py-2 rounded-lg hover:bg-[#45b8b0] transition-colors"
               >
                 Sign In
               </Link>
@@ -125,7 +125,7 @@ export default function Header() {
               {!isLoggedIn && (
                 <Link
                   href="/auth"
-                  className="bg-[#FF6B6B] text-white px-4 py-2 rounded-lg hover:bg-[#e55555] transition-colors text-center"
+                  className="bg-[#4ECDC4] text-white px-4 py-2 rounded-lg hover:bg-[#45b8b0] transition-colors text-center"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Sign In

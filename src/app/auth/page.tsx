@@ -128,19 +128,22 @@ export default function AuthPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#FF6B6B] text-white py-2 px-4 rounded-md hover:bg-[#e55555] focus:outline-none focus:ring-2 focus:ring-[#FF6B6B] disabled:opacity-50 font-medium text-sm sm:text-base"
+            className="w-full bg-[#4ECDC4] text-white py-2 px-4 rounded-md hover:bg-[#45b8b0] focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] disabled:opacity-50 font-medium text-sm sm:text-base"
           >
             {loading ? 'Loading...' : (isLogin ? 'Sign In' : 'Sign Up')}
           </button>
         </form>
 
         <div className="mt-6 text-center">
-          <button
-            onClick={() => setIsLogin(!isLogin)}
-            className="text-[#4ECDC4] hover:text-[#45b8b0] font-medium text-sm sm:text-base"
-          >
-            {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
-          </button>
+          <span className="text-[#2E2E2E] text-sm sm:text-base">
+            {isLogin ? "Don't have an account? " : "Already have an account? "}
+            <button
+              onClick={() => setIsLogin(!isLogin)}
+              className="text-[#4ECDC4] hover:text-[#45b8b0] font-medium"
+            >
+              {isLogin ? "Sign up" : "Sign in"}
+            </button>
+          </span>
         </div>
       </div>
     </div>
