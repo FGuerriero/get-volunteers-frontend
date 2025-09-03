@@ -29,6 +29,15 @@ export default function AuthPage() {
     try {
       const token = await authAPI.login(loginData);
       localStorage.setItem('token', token.access_token);
+      
+      // Get user profile and store it
+      try {
+        const profile = await authAPI.getProfile();
+        localStorage.setItem('user', JSON.stringify(profile));
+      } catch (profileErr) {
+        console.error('Failed to fetch profile:', profileErr);
+      }
+      
       window.location.href = '/';
     } catch (err) {
       setError('Invalid email or password');

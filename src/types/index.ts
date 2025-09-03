@@ -22,6 +22,7 @@ export interface VolunteerCreate extends VolunteerBase {
 export interface Volunteer extends VolunteerBase {
   id: number;
   is_active: boolean;
+  is_manager: boolean;
 }
 
 export interface NeedBase {

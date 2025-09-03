@@ -13,21 +13,33 @@ import Image from "next/image";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isManager, setIsManager] = useState(false);
 
   useEffect(() => {
     // Check if user is logged in by checking for token
     const token = localStorage.getItem("token");
+    const userStr = localStorage.getItem("user");
     setIsLoggedIn(!!token);
+    if (userStr) {
+      try {
+        const user = JSON.parse(userStr);
+        setIsManager(user.is_manager || false);
+      } catch (e) {
+        setIsManager(false);
+      }
+    }
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setIsLoggedIn(false);
+    setIsManager(false);
     window.location.href = "/";
   };
 
   return (
-    <header className="bg-white shadow-sm border-b">
+    <header className="bg-teal-500 shadow-sm fixed top-0 left-0 right-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center h-16">
           {/* Logo */}
@@ -40,7 +52,7 @@ export default function Header() {
               className="sm:hidden"
             />
             <Image
-              src="/Full_Logo.png"
+              src="/logo_without_slogan.png"
               alt="getVolunteers"
               width={150}
               height={32}
@@ -51,17 +63,19 @@ export default function Header() {
           {/* Desktop Navigation - Centered when logged in */}
           {isLoggedIn && (
             <nav className="hidden md:flex items-center space-x-6 flex-1 justify-center">
+              {isManager && (
+                <Link
+                  href="/volunteers"
+                  className="text-white hover:text-[#FF6B6B] transition-colors font-bold text-lg"
+                >
+                  Volunteers
+                </Link>
+              )}
               <Link
-                href="/volunteers"
-                className="text-[#2E2E2E] hover:text-[#FF6B6B] transition-colors"
+                href="/my-needs"
+                className="text-white hover:text-[#FF6B6B] transition-colors font-bold text-lg"
               >
-                Volunteers
-              </Link>
-              <Link
-                href="/needs"
-                className="text-[#2E2E2E] hover:text-[#FF6B6B] transition-colors"
-              >
-                Opportunities
+                My Needs
               </Link>
             </nav>
           )}
@@ -69,18 +83,28 @@ export default function Header() {
           {/* Right side - Profile or Sign In */}
           <div className="hidden md:flex items-center ml-auto">
             {isLoggedIn ? (
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2">
                 <Link
                   href="/profile"
-                  className="p-2 text-[#2E2E2E] hover:text-[#FF6B6B] transition-colors"
+                  className="p-2 text-white hover:text-[#FF6B6B] transition-colors"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
                   </svg>
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="text-[#2E2E2E] hover:text-[#FF6B6B] transition-colors text-sm"
+                  className="text-white hover:text-[#FF6B6B] transition-colors text-base"
                 >
                   Sign Out
                 </button>
@@ -98,7 +122,7 @@ export default function Header() {
           {/* Mobile Hamburger Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-[#2E2E2E] hover:text-[#FF6B6B] transition-colors"
+            className="md:hidden p-2 text-white hover:text-[#FF6B6B] transition-colors"
           >
             <svg
               className="w-6 h-6"
@@ -131,23 +155,25 @@ export default function Header() {
             <nav className="flex flex-col space-y-3">
               {isLoggedIn && (
                 <>
+                  {isManager && (
+                    <Link
+                      href="/volunteers"
+                      className="text-white hover:text-[#FF6B6B] transition-colors py-2 font-bold text-lg"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Volunteers
+                    </Link>
+                  )}
                   <Link
-                    href="/volunteers"
-                    className="text-[#2E2E2E] hover:text-[#FF6B6B] transition-colors py-2"
+                    href="/my-needs"
+                    className="text-white hover:text-[#FF6B6B] transition-colors py-2 font-bold text-lg"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Volunteers
-                  </Link>
-                  <Link
-                    href="/needs"
-                    className="text-[#2E2E2E] hover:text-[#FF6B6B] transition-colors py-2"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Opportunities
+                    My Needs
                   </Link>
                   <Link
                     href="/profile"
-                    className="text-[#2E2E2E] hover:text-[#FF6B6B] transition-colors py-2"
+                    className="text-white hover:text-[#FF6B6B] transition-colors py-2 font-bold text-lg"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Profile
