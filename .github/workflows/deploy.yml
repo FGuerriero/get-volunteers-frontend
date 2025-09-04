@@ -1,0 +1,52 @@
+# Copyright (c) 2025 Fernando Guerriero Cardoso da Silva.
+# Created Date: Tue Sep 04 2025
+# SPDX-License-Identifier: MIT
+
+name: Deploy to Oracle Cloud VM
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js (for Next.js)
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install Dependencies and Build
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # Este é o bloco de comandos que será executado na sua VM
+            # Adapte o caminho do projeto e os comandos para sua aplicação
+
+            # Navega para o diretório do seu projeto
+            cd /var/www/seu-projeto-nextjs
+
+            # Puxa as alterações mais recentes do GitHub
+            git pull origin main
+
+            # Instala as dependências e constrói a aplicação
+            # (opcional, dependendo de como você gerencia seu build)
+            npm install
+            npm run build
+
+            # Reinicia o processo da sua aplicação (usando PM2 como exemplo)
+            # Se você usa FastAPI, este comando seria para reiniciar o Gunicorn/Uvicorn
+            pm2 restart your-nextjs-app
