@@ -28,7 +28,7 @@ jobs:
 
       - name: Get lowercase repository name
         id: get_repo_name
-        run: echo "repo_name=${GITHUB_REPOSITORY,,}" >> $GITHUB_OUTPUT && echo $GITHUB_OUTPUT
+        run: echo "repo_name=${GITHUB_REPOSITORY,,}" >> $GITHUB_OUTPUT && echo "repo_name=${GITHUB_REPOSITORY,,}"
 
       - name: Build and Push Docker image to GHCR
         uses: docker/build-push-action@v3
