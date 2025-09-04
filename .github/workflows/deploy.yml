@@ -53,12 +53,12 @@ jobs:
             docker rm get-volunteers-frontend || true
 
             # Pull the most recent image from GHCR
-            docker pull ghcr.io/${{ secrets.GHCR_USERNAME }}/${{ steps.get_repo_name.outputs.repo_name }}:latest
+            docker pull ghcr.io/${{ steps.get_repo_name.outputs.repo_name }}:latest
 
             # Execute the container with the new image
             docker run -d --restart=unless-stopped --name get-volunteers-frontend -p 3000:3000 \
             -e NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} \
-            ghcr.io/${{ secrets.GHCR_USERNAME }}/${{ steps.get_repo_name.outputs.repo_name }}:latest
+            ghcr.io/${{ steps.get_repo_name.outputs.repo_name }}:latest
 
             # Clean old Docker images to save storage
             docker image prune -f
