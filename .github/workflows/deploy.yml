@@ -26,12 +26,16 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get lowercase repository name
+        id: get_repo_name
+        run: echo "repo_name=${GITHUB_REPOSITORY,,}" >> $GITHUB_OUTPUT
+
       - name: Build and Push Docker image to GHCR
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ secrets.GHCR_USERNAME }}/get-volunteers-frontend:latest
+          tags: ghcr.io/${{ steps.get_repo_name.outputs.repo_name }}:latest
 
       - name: Deploy with SSH
         uses: appleboy/ssh-action@v0.1.7
@@ -47,12 +51,12 @@ jobs:
             docker rm get-volunteers-frontend || true
 
             # Pull the most recent image from GHCR
-            docker pull ghcr.io/${{ secrets.GHCR_USERNAME }}/${{ github.repository }}/get-volunteers-frontend:latest
+            docker pull ghcr.io/${{ secrets.GHCR_USERNAME }}/${{ steps.get_repo_name.outputs.repo_name }}:latest
 
             # Execute the container with the new image
             docker run -d --restart=unless-stopped --name get-volunteers-frontend -p 3000:3000 \
             -e NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} \
-            ghcr.io/${{ secrets.GHCR_USERNAME }}/${{ github.repository }}/get-volunteers-frontend:latest
+            ghcr.io/${{ secrets.GHCR_USERNAME }}/${{ steps.get_repo_name.outputs.repo_name }}:latest
 
             # Clean old Docker images to save storage
             docker image prune -f
