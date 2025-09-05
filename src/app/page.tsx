@@ -22,11 +22,11 @@ export default function Home() {
         <div className="absolute inset-0 bg-white opacity-60 rounded-lg"></div>
         <div className="relative max-w-3xl mx-auto">
           <Image
-            src="/full_logo.png" // replace with your cropped GetVolunteers logo
+            src="/full_logo.png"
             alt="GetVolunteers Logo"
             width={700}
             height={50}
-            className="mx-auto mb-6"
+            className="w-full h-auto mb-6"
           />
         </div>
       </div>
@@ -115,13 +115,6 @@ export default function Home() {
           className="mx-auto rounded-xl shadow-lg"
         />
       </section>
-
-      {/* Footer */}
-      <footer className="bg-teal-600 text-white py-6 text-center">
-        <p>
-          &copy; {new Date().getFullYear()} GetVolunteers. All rights reserved.
-        </p>
-      </footer>
     </main>
   );
 }
