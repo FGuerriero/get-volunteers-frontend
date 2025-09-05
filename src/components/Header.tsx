@@ -40,10 +40,10 @@ export default function Header() {
 
   return (
     <header className="bg-[var(--color-soft-blue)] shadow-sm fixed top-0 left-0 right-0 z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center h-16">
+      <div className="w-full px-4 sm:px-24 lg:px-24">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center flex-shrink-0">
             <Image
               src="/favicon.png"
               alt="getVolunteers"
@@ -62,26 +62,20 @@ export default function Header() {
 
           {/* Desktop Navigation - Centered when logged in */}
           {isLoggedIn && (
-            <nav className="hidden md:flex items-center space-x-6 flex-1 justify-center">
+            <nav className="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2">
               {isManager && (
-                <Link
-                  href="/volunteers"
-                  className="nav-link"
-                >
+                <Link href="/volunteers" className="nav-link">
                   Volunteers
                 </Link>
               )}
-              <Link
-                href="/my-needs"
-                className="nav-link"
-              >
+              <Link href="/my-needs" className="nav-link">
                 My Needs
               </Link>
             </nav>
           )}
 
           {/* Right side - Profile or Sign In */}
-          <div className="hidden md:flex items-center ml-auto">
+          <div className="hidden md:flex items-center flex-shrink-0">
             {isLoggedIn ? (
               <div className="flex items-center space-x-2">
                 <Link
@@ -104,16 +98,13 @@ export default function Header() {
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="text-white hover:text-[var(--color-coral)] transition-colors text-base"
+                  className="text-white hover:text-[var(--color-coral)] transition-colors text-base text-shadow-md"
                 >
                   Sign Out
                 </button>
               </div>
             ) : (
-              <Link
-                href="/auth"
-                className="btn-primary"
-              >
+              <Link href="/auth" className="btn-primary">
                 Sign In
               </Link>
             )}
@@ -122,7 +113,7 @@ export default function Header() {
           {/* Mobile Hamburger Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-white hover:text-[var(--color-coral)] transition-colors"
+            className="md:hidden p-2 text-white hover:text-[var(--color-coral)] transition-colors flex-shrink-0"
           >
             <svg
               className="w-6 h-6"

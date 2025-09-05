@@ -39,7 +39,7 @@ body {
 
 /* Custom utility classes */
 .btn-primary {
-  @apply bg-[var(--color-soft-blue)] text-white px-4 py-2 rounded-lg hover:bg-[#45b8b0] transition-colors font-bold;
+  @apply bg-[var(--color-soft-blue)] text-white px-4 py-2 rounded-lg hover:bg-[#45b8b0] transition-colors font-bold text-shadow-md;
 }
 
 .btn-secondary {

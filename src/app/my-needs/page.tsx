@@ -86,11 +86,9 @@ export default function MyNeedsPage() {
 
   return (
     <div className="page-container">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-18">
         <div className="flex justify-between items-center mb-6 sm:mb-8">
-          <h1 className="page-title">
-            My Needs
-          </h1>
+          <h1 className="page-title">My Needs</h1>
           <button
             onClick={() => setIsCreating(true)}
             className="btn-primary text-sm"
@@ -99,11 +97,7 @@ export default function MyNeedsPage() {
           </button>
         </div>
 
-        {error && (
-          <div className="error-message">
-            {error}
-          </div>
-        )}
+        {error && <div className="error-message">{error}</div>}
 
         {(isCreating || editingNeed) && (
           <div className="card mb-6 sm:p-8">
@@ -112,9 +106,7 @@ export default function MyNeedsPage() {
             </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="label-text">
-                  Title *
-                </label>
+                <label className="label-text">Title *</label>
                 <input
                   type="text"
                   name="title"
@@ -124,9 +116,7 @@ export default function MyNeedsPage() {
                 />
               </div>
               <div>
-                <label className="label-text">
-                  Description *
-                </label>
+                <label className="label-text">Description *</label>
                 <textarea
                   name="description"
                   required
@@ -137,9 +127,7 @@ export default function MyNeedsPage() {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="label-text">
-                    Required Tasks
-                  </label>
+                  <label className="label-text">Required Tasks</label>
                   <textarea
                     name="required_tasks"
                     rows={2}
@@ -148,9 +136,7 @@ export default function MyNeedsPage() {
                   />
                 </div>
                 <div>
-                  <label className="label-text">
-                    Required Skills
-                  </label>
+                  <label className="label-text">Required Skills</label>
                   <textarea
                     name="required_skills"
                     rows={2}
@@ -161,9 +147,7 @@ export default function MyNeedsPage() {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="label-text">
-                    Volunteers Needed *
-                  </label>
+                  <label className="label-text">Volunteers Needed *</label>
                   <input
                     type="number"
                     name="num_volunteers_needed"
@@ -174,9 +158,7 @@ export default function MyNeedsPage() {
                   />
                 </div>
                 <div>
-                  <label className="label-text">
-                    Format *
-                  </label>
+                  <label className="label-text">Format *</label>
                   <select
                     name="format"
                     required
@@ -189,9 +171,7 @@ export default function MyNeedsPage() {
                 </div>
               </div>
               <div>
-                <label className="label-text">
-                  Location Details
-                </label>
+                <label className="label-text">Location Details</label>
                 <input
                   type="text"
                   name="location_details"
@@ -201,9 +181,7 @@ export default function MyNeedsPage() {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="label-text">
-                    Contact Name *
-                  </label>
+                  <label className="label-text">Contact Name *</label>
                   <input
                     type="text"
                     name="contact_name"
@@ -213,9 +191,7 @@ export default function MyNeedsPage() {
                   />
                 </div>
                 <div>
-                  <label className="label-text">
-                    Contact Email *
-                  </label>
+                  <label className="label-text">Contact Email *</label>
                   <input
                     type="email"
                     name="contact_email"
@@ -225,9 +201,7 @@ export default function MyNeedsPage() {
                   />
                 </div>
                 <div>
-                  <label className="label-text">
-                    Contact Phone
-                  </label>
+                  <label className="label-text">Contact Phone</label>
                   <input
                     type="tel"
                     name="contact_phone"
@@ -267,10 +241,7 @@ export default function MyNeedsPage() {
             </div>
           ) : (
             needs.map((need) => (
-              <div
-                key={need.id}
-                className="card"
-              >
+              <div key={need.id} className="card">
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-lg sm:text-xl font-semibold text-[var(--color-charcoal)]">
                     {need.title}
@@ -278,13 +249,13 @@ export default function MyNeedsPage() {
                   <div className="flex gap-2">
                     <button
                       onClick={() => setEditingNeed(need)}
-                      className="text-[var(--color-soft-blue)] hover:text-[#45b8b0] text-sm font-medium"
+                      className="bg-[var(--color-soft-blue)] text-white px-3 py-1 rounded-md shadow-sm hover:bg-[#45b8b0] hover:shadow-md transition-all text-sm font-medium"
                     >
                       Edit
                     </button>
                     <button
                       onClick={() => handleDelete(need.id)}
-                      className="text-[var(--color-coral)] hover:text-[#e55555] text-sm font-medium"
+                      className="bg-[var(--color-coral)] text-white px-3 py-1 rounded-md shadow-sm hover:bg-[#e55555] hover:shadow-md transition-all text-sm font-medium"
                     >
                       Delete
                     </button>
@@ -294,26 +265,38 @@ export default function MyNeedsPage() {
                   {need.description}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-                  <div>
-                    <span className="font-medium text-[var(--color-coral)]">
+                  <div className="flex flex-row">
+                    <span className="font-bold text-[var(--color-coral)] mr-1">
                       Volunteers needed:
-                    </span>{" "}
-                    {need.num_volunteers_needed}
+                    </span>
+                    <p className="text-[var(--color-charcoal)]">
+                      {need.num_volunteers_needed}
+                    </p>
                   </div>
-                  <div>
-                    <span className="font-medium text-[var(--color-coral)]">Format:</span>{" "}
-                    {need.format}
+                  <div className="flex flex-row">
+                    <span className="text-[var(--color-coral)] font-bold mr-1">
+                      Format:
+                    </span>
+                    <p className="text-[var(--color-charcoal)]">
+                      {need.format}
+                    </p>
                   </div>
-                  <div>
-                    <span className="font-medium text-[var(--color-coral)]">Contact:</span>{" "}
-                    {need.contact_name}
+                  <div className="flex flex-row">
+                    <span className="font-bold text-[var(--color-coral)] mr-1">
+                      Contact:
+                    </span>
+                    <p className="text-[var(--color-charcoal)]">
+                      {need.contact_name}
+                    </p>
                   </div>
                   {need.location_details && (
-                    <div>
-                      <span className="font-medium text-[var(--color-coral)]">
+                    <div className="flex flex-row">
+                      <span className="font-bold text-[var(--color-coral)] mr-1">
                         Location:
-                      </span>{" "}
-                      {need.location_details}
+                      </span>
+                      <p className="text-[var(--color-charcoal)]">
+                        {need.location_details}
+                      </p>
                     </div>
                   )}
                 </div>
