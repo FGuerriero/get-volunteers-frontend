@@ -71,14 +71,14 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F7F7] flex items-center justify-center px-4">
+    <div className="page-container flex items-center justify-center px-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-md p-6 sm:p-8">
-        <h2 className="text-xl sm:text-2xl font-bold text-center text-[#2E2E2E] mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl font-bold text-center text-[var(--color-charcoal)] mb-6 sm:mb-8">
           {isLogin ? 'Sign In' : 'Sign Up'}
         </h2>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4 text-sm">
+          <div className="error-message">
             {error}
           </div>
         )}
@@ -87,68 +87,68 @@ export default function AuthPage() {
           {!isLogin && (
             <>
               <div>
-                <label className="block text-sm font-medium text-[#2E2E2E] mb-1">
+                <label className="label-text">
                   Name
                 </label>
                 <input
                   type="text"
                   name="name"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm"
+                  className="input-field"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#2E2E2E] mb-1">
+                <label className="label-text">
                   Phone (optional)
                 </label>
                 <input
                   type="tel"
                   name="phone"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm"
+                  className="input-field"
                 />
               </div>
             </>
           )}
 
           <div>
-            <label className="block text-sm font-medium text-[#2E2E2E] mb-1">
+            <label className="label-text">
               Email
             </label>
             <input
               type="email"
               name="email"
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm"
+              className="input-field"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-[#2E2E2E] mb-1">
+            <label className="label-text">
               Password
             </label>
             <input
               type="password"
               name="password"
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm"
+              className="input-field"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#4ECDC4] text-white py-2 px-4 rounded-md hover:bg-[#45b8b0] focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] disabled:opacity-50 font-medium text-sm sm:text-base"
+            className="btn-primary w-full focus:ring-2 focus:ring-[var(--color-soft-blue)] disabled:opacity-50 text-sm sm:text-base"
           >
             {loading ? 'Loading...' : (isLogin ? 'Sign In' : 'Sign Up')}
           </button>
         </form>
 
         <div className="mt-6 text-center">
-          <span className="text-[#2E2E2E] text-sm sm:text-base">
+          <span className="text-[var(--color-charcoal)] text-sm sm:text-base">
             {isLogin ? "Don't have an account? " : "Already have an account? "}
             <button
               onClick={() => setIsLogin(!isLogin)}
-              className="text-[#4ECDC4] hover:text-[#45b8b0] font-medium"
+              className="text-[var(--color-soft-blue)] hover:text-[#45b8b0] font-medium"
             >
               {isLogin ? "Sign up" : "Sign in"}
             </button>

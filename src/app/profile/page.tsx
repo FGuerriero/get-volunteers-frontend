@@ -73,28 +73,28 @@ export default function ProfilePage() {
 
   if (loading)
     return (
-      <div className="min-h-screen bg-[#F7F7F7] flex items-center justify-center">
+      <div className="page-container flex items-center justify-center">
         Loading profile...
       </div>
     );
   if (!volunteer)
     return (
-      <div className="min-h-screen bg-[#F7F7F7] flex items-center justify-center">
+      <div className="page-container flex items-center justify-center">
         Profile not found
       </div>
     );
 
   return (
-    <div className="min-h-screen bg-[#F7F7F7] py-6 sm:py-8">
+    <div className="page-container">
       <div className="container mx-auto px-4 max-w-2xl">
         <div className="flex justify-between items-center mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#2E2E2E]">
+          <h1 className="page-title">
             My Profile
           </h1>
           {!isEditing && (
             <button
               onClick={() => setIsEditing(true)}
-              className="bg-[#4ECDC4] text-white px-4 py-2 rounded-lg hover:bg-[#45b8b0] transition-colors font-bold text-sm"
+              className="btn-primary text-sm"
             >
               Edit Profile
             </button>
@@ -102,81 +102,81 @@ export default function ProfilePage() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4 text-sm">
+          <div className="error-message">
             {error}
           </div>
         )}
 
         {success && (
-          <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded mb-4 text-sm">
+          <div className="success-message">
             Profile updated successfully!
           </div>
         )}
 
         {!isEditing ? (
           // Read-only view
-          <div className="bg-white rounded-lg shadow-md p-6 sm:p-8 space-y-4">
+          <div className="card space-y-4 sm:p-8">
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 Name
               </label>
-              <p className="text-[#2E2E2E] text-sm sm:text-base">
+              <p className="text-[var(--color-charcoal)] text-sm sm:text-base">
                 {volunteer.name}
               </p>
             </div>
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 Email
               </label>
-              <p className="text-[#2E2E2E] text-sm sm:text-base">
+              <p className="text-[var(--color-charcoal)] text-sm sm:text-base">
                 {volunteer.email}
               </p>
             </div>
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 Phone
               </label>
-              <p className="text-[#2E2E2E] text-sm sm:text-base">
+              <p className="text-[var(--color-charcoal)] text-sm sm:text-base">
                 {volunteer.phone || "Not provided"}
               </p>
             </div>
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 Location
               </label>
-              <p className="text-[#2E2E2E] text-sm sm:text-base">
+              <p className="text-[var(--color-charcoal)] text-sm sm:text-base">
                 {volunteer.location || "Not provided"}
               </p>
             </div>
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 About Me
               </label>
-              <p className="text-[#2E2E2E] text-sm sm:text-base">
+              <p className="text-[var(--color-charcoal)] text-sm sm:text-base">
                 {volunteer.about_me || "Not provided"}
               </p>
             </div>
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 Skills
               </label>
-              <p className="text-[#2E2E2E] text-sm sm:text-base">
+              <p className="text-[var(--color-charcoal)] text-sm sm:text-base">
                 {volunteer.skills || "Not provided"}
               </p>
             </div>
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 Volunteer Interests
               </label>
-              <p className="text-[#2E2E2E] text-sm sm:text-base">
+              <p className="text-[var(--color-charcoal)] text-sm sm:text-base">
                 {volunteer.volunteer_interests || "Not provided"}
               </p>
             </div>
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 Availability
               </label>
-              <p className="text-[#2E2E2E] text-sm sm:text-base">
+              <p className="text-[var(--color-charcoal)] text-sm sm:text-base">
                 {volunteer.availability || "Not provided"}
               </p>
             </div>
@@ -185,10 +185,10 @@ export default function ProfilePage() {
           // Edit form
           <form
             onSubmit={handleSubmit}
-            className="bg-white rounded-lg shadow-md p-6 sm:p-8 space-y-4"
+            className="card space-y-4 sm:p-8"
           >
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 Name *
               </label>
               <input
@@ -196,11 +196,11 @@ export default function ProfilePage() {
                 name="name"
                 required
                 defaultValue={volunteer.name}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                className="input-field"
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 Email *
               </label>
               <input
@@ -208,101 +208,101 @@ export default function ProfilePage() {
                 name="email"
                 required
                 defaultValue={volunteer.email}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                className="input-field"
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 Phone
               </label>
               <input
                 type="tel"
                 name="phone"
                 defaultValue={volunteer.phone || ""}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                className="input-field"
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 Location
               </label>
               <input
                 type="text"
                 name="location"
                 defaultValue={volunteer.location || ""}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                className="input-field"
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 About Me
               </label>
               <textarea
                 name="about_me"
                 rows={3}
                 defaultValue={volunteer.about_me || ""}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                className="input-field"
                 placeholder="Tell us about yourself..."
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 Skills
               </label>
               <textarea
                 name="skills"
                 rows={3}
                 defaultValue={volunteer.skills || ""}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                className="input-field"
                 placeholder="What skills do you have? (e.g., programming, teaching, cooking...)"
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 Volunteer Interests
               </label>
               <textarea
                 name="volunteer_interests"
                 rows={3}
                 defaultValue={volunteer.volunteer_interests || ""}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                className="input-field"
                 placeholder="What causes or activities interest you?"
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 Availability
               </label>
               <textarea
                 name="availability"
                 rows={2}
                 defaultValue={volunteer.availability || ""}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                className="input-field"
                 placeholder="When are you available? (e.g., weekends, evenings...)"
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+              <label className="label-text">
                 New Password (leave blank to keep current)
               </label>
               <input
                 type="password"
                 name="password"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                className="input-field"
               />
             </div>
             <div className="flex gap-3">
               <button
                 type="submit"
                 disabled={saving}
-                className="flex-1 bg-[#4ECDC4] text-white py-2 px-4 rounded-md hover:bg-[#45b8b0] focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] disabled:opacity-50 font-bold text-sm sm:text-base"
+                className="btn-primary flex-1 focus:ring-2 focus:ring-[var(--color-soft-blue)] disabled:opacity-50 text-sm sm:text-base"
               >
                 {saving ? "Saving..." : "Save"}
               </button>
               <button
                 type="button"
                 onClick={() => setIsEditing(false)}
-                className="px-4 py-2 bg-[#FF6B6B] text-white rounded-md hover:bg-[#e55555] transition-colors font-bold text-sm sm:text-base"
+                className="btn-secondary text-sm sm:text-base"
               >
                 Cancel
               </button>

@@ -79,40 +79,40 @@ export default function MyNeedsPage() {
 
   if (loading)
     return (
-      <div className="min-h-screen bg-[#F7F7F7] flex items-center justify-center">
+      <div className="page-container flex items-center justify-center">
         Loading...
       </div>
     );
 
   return (
-    <div className="min-h-screen bg-[#F7F7F7] py-6 sm:py-8">
+    <div className="page-container">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#2E2E2E]">
+          <h1 className="page-title">
             My Needs
           </h1>
           <button
             onClick={() => setIsCreating(true)}
-            className="bg-[#4ECDC4] text-white px-4 py-2 rounded-lg hover:bg-[#45b8b0] transition-colors font-bold text-sm"
+            className="btn-primary text-sm"
           >
             Create Need
           </button>
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4 text-sm">
+          <div className="error-message">
             {error}
           </div>
         )}
 
         {(isCreating || editingNeed) && (
-          <div className="bg-white rounded-lg shadow-md p-6 sm:p-8 mb-6">
-            <h2 className="text-xl font-bold text-[#2E2E2E] mb-4">
+          <div className="card mb-6 sm:p-8">
+            <h2 className="text-xl font-bold text-[var(--color-charcoal)] mb-4">
               {editingNeed ? "Edit Need" : "Create New Need"}
             </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+                <label className="label-text">
                   Title *
                 </label>
                 <input
@@ -120,11 +120,11 @@ export default function MyNeedsPage() {
                   name="title"
                   required
                   defaultValue={editingNeed?.title || ""}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                  className="input-field"
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+                <label className="label-text">
                   Description *
                 </label>
                 <textarea
@@ -132,36 +132,36 @@ export default function MyNeedsPage() {
                   required
                   rows={3}
                   defaultValue={editingNeed?.description || ""}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                  className="input-field"
                 />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+                  <label className="label-text">
                     Required Tasks
                   </label>
                   <textarea
                     name="required_tasks"
                     rows={2}
                     defaultValue={editingNeed?.required_tasks || ""}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                    className="input-field"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+                  <label className="label-text">
                     Required Skills
                   </label>
                   <textarea
                     name="required_skills"
                     rows={2}
                     defaultValue={editingNeed?.required_skills || ""}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                    className="input-field"
                   />
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+                  <label className="label-text">
                     Volunteers Needed *
                   </label>
                   <input
@@ -170,18 +170,18 @@ export default function MyNeedsPage() {
                     required
                     min="1"
                     defaultValue={editingNeed?.num_volunteers_needed || 1}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                    className="input-field"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+                  <label className="label-text">
                     Format *
                   </label>
                   <select
                     name="format"
                     required
                     defaultValue={editingNeed?.format || "in-person"}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                    className="input-field"
                   >
                     <option value="in-person">In-Person</option>
                     <option value="virtual">Virtual</option>
@@ -189,19 +189,19 @@ export default function MyNeedsPage() {
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+                <label className="label-text">
                   Location Details
                 </label>
                 <input
                   type="text"
                   name="location_details"
                   defaultValue={editingNeed?.location_details || ""}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                  className="input-field"
                 />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+                  <label className="label-text">
                     Contact Name *
                   </label>
                   <input
@@ -209,11 +209,11 @@ export default function MyNeedsPage() {
                     name="contact_name"
                     required
                     defaultValue={editingNeed?.contact_name || ""}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                    className="input-field"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+                  <label className="label-text">
                     Contact Email *
                   </label>
                   <input
@@ -221,25 +221,25 @@ export default function MyNeedsPage() {
                     name="contact_email"
                     required
                     defaultValue={editingNeed?.contact_email || ""}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                    className="input-field"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-[#2E2E2E] mb-1">
+                  <label className="label-text">
                     Contact Phone
                   </label>
                   <input
                     type="tel"
                     name="contact_phone"
                     defaultValue={editingNeed?.contact_phone || ""}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] text-sm text-[#2E2E2E]"
+                    className="input-field"
                   />
                 </div>
               </div>
               <div className="flex gap-3">
                 <button
                   type="submit"
-                  className="flex-1 bg-[#4ECDC4] text-white py-2 px-4 rounded-md hover:bg-[#45b8b0] focus:outline-none focus:ring-2 focus:ring-[#4ECDC4] font-bold text-sm sm:text-base"
+                  className="btn-primary flex-1 focus:ring-2 focus:ring-[var(--color-soft-blue)] text-sm sm:text-base"
                 >
                   {editingNeed ? "Update Need" : "Create Need"}
                 </button>
@@ -249,7 +249,7 @@ export default function MyNeedsPage() {
                     setIsCreating(false);
                     setEditingNeed(null);
                   }}
-                  className="px-4 py-2 bg-[#FF6B6B] text-white rounded-md hover:bg-[#e55555] transition-colors font-bold text-sm sm:text-base"
+                  className="btn-secondary text-sm sm:text-base"
                 >
                   Cancel
                 </button>
@@ -261,7 +261,7 @@ export default function MyNeedsPage() {
         <div className="space-y-4 sm:space-y-6">
           {needs.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-[#2E2E2E] opacity-70">
+              <p className="text-[var(--color-charcoal)] opacity-70">
                 No needs found. Create your first need!
               </p>
             </div>
@@ -269,48 +269,48 @@ export default function MyNeedsPage() {
             needs.map((need) => (
               <div
                 key={need.id}
-                className="bg-white rounded-lg shadow-md p-4 sm:p-6 border border-gray-100"
+                className="card"
               >
                 <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-lg sm:text-xl font-semibold text-[#2E2E2E]">
+                  <h3 className="text-lg sm:text-xl font-semibold text-[var(--color-charcoal)]">
                     {need.title}
                   </h3>
                   <div className="flex gap-2">
                     <button
                       onClick={() => setEditingNeed(need)}
-                      className="text-[#4ECDC4] hover:text-[#45b8b0] text-sm font-medium"
+                      className="text-[var(--color-soft-blue)] hover:text-[#45b8b0] text-sm font-medium"
                     >
                       Edit
                     </button>
                     <button
                       onClick={() => handleDelete(need.id)}
-                      className="text-[#FF6B6B] hover:text-[#e55555] text-sm font-medium"
+                      className="text-[var(--color-coral)] hover:text-[#e55555] text-sm font-medium"
                     >
                       Delete
                     </button>
                   </div>
                 </div>
-                <p className="text-[#2E2E2E] opacity-80 mb-3">
+                <p className="text-[var(--color-charcoal)] opacity-80 mb-3">
                   {need.description}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                   <div>
-                    <span className="font-medium text-[#FF6B6B]">
+                    <span className="font-medium text-[var(--color-coral)]">
                       Volunteers needed:
                     </span>{" "}
                     {need.num_volunteers_needed}
                   </div>
                   <div>
-                    <span className="font-medium text-[#FF6B6B]">Format:</span>{" "}
+                    <span className="font-medium text-[var(--color-coral)]">Format:</span>{" "}
                     {need.format}
                   </div>
                   <div>
-                    <span className="font-medium text-[#FF6B6B]">Contact:</span>{" "}
+                    <span className="font-medium text-[var(--color-coral)]">Contact:</span>{" "}
                     {need.contact_name}
                   </div>
                   {need.location_details && (
                     <div>
-                      <span className="font-medium text-[#FF6B6B]">
+                      <span className="font-medium text-[var(--color-coral)]">
                         Location:
                       </span>{" "}
                       {need.location_details}

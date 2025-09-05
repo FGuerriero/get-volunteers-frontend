@@ -39,7 +39,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-teal-500 shadow-sm fixed top-0 left-0 right-0 z-50">
+    <header className="bg-[var(--color-soft-blue)] shadow-sm fixed top-0 left-0 right-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center h-16">
           {/* Logo */}
@@ -66,14 +66,14 @@ export default function Header() {
               {isManager && (
                 <Link
                   href="/volunteers"
-                  className="text-white hover:text-[#FF6B6B] transition-colors font-bold text-lg"
+                  className="nav-link"
                 >
                   Volunteers
                 </Link>
               )}
               <Link
                 href="/my-needs"
-                className="text-white hover:text-[#FF6B6B] transition-colors font-bold text-lg"
+                className="nav-link"
               >
                 My Needs
               </Link>
@@ -86,7 +86,7 @@ export default function Header() {
               <div className="flex items-center space-x-2">
                 <Link
                   href="/profile"
-                  className="p-2 text-white hover:text-[#FF6B6B] transition-colors"
+                  className="p-2 text-white hover:text-[var(--color-coral)] transition-colors"
                 >
                   <svg
                     className="w-6 h-6"
@@ -104,7 +104,7 @@ export default function Header() {
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="text-white hover:text-[#FF6B6B] transition-colors text-base"
+                  className="text-white hover:text-[var(--color-coral)] transition-colors text-base"
                 >
                   Sign Out
                 </button>
@@ -112,7 +112,7 @@ export default function Header() {
             ) : (
               <Link
                 href="/auth"
-                className="bg-[#4ECDC4] text-white px-4 py-2 rounded-lg hover:bg-[#45b8b0] transition-colors"
+                className="btn-primary"
               >
                 Sign In
               </Link>
@@ -122,7 +122,7 @@ export default function Header() {
           {/* Mobile Hamburger Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-white hover:text-[#FF6B6B] transition-colors"
+            className="md:hidden p-2 text-white hover:text-[var(--color-coral)] transition-colors"
           >
             <svg
               className="w-6 h-6"
@@ -158,7 +158,7 @@ export default function Header() {
                   {isManager && (
                     <Link
                       href="/volunteers"
-                      className="text-white hover:text-[#FF6B6B] transition-colors py-2 font-bold text-lg"
+                      className="nav-link py-2"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Volunteers
@@ -166,14 +166,14 @@ export default function Header() {
                   )}
                   <Link
                     href="/my-needs"
-                    className="text-white hover:text-[#FF6B6B] transition-colors py-2 font-bold text-lg"
+                    className="nav-link py-2"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     My Needs
                   </Link>
                   <Link
                     href="/profile"
-                    className="text-white hover:text-[#FF6B6B] transition-colors py-2 font-bold text-lg"
+                    className="nav-link py-2"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Profile
@@ -183,7 +183,7 @@ export default function Header() {
                       handleLogout();
                       setIsMenuOpen(false);
                     }}
-                    className="bg-[#FF6B6B] text-white px-4 py-2 rounded-lg hover:bg-[#e55555] transition-colors text-left"
+                    className="btn-secondary text-left"
                   >
                     Sign Out
                   </button>
@@ -192,7 +192,7 @@ export default function Header() {
               {!isLoggedIn && (
                 <Link
                   href="/auth"
-                  className="bg-[#4ECDC4] text-white px-4 py-2 rounded-lg hover:bg-[#45b8b0] transition-colors text-center"
+                  className="btn-primary text-center"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Sign In

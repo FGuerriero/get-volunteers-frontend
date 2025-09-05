@@ -6,13 +6,15 @@
 
 import type { Metadata } from "next";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "getVolunteers - Connect with Volunteer Opportunities",
-  description: "Connecting volunteers with meaningful opportunities to make a difference in their communities.",
+  description:
+    "Connecting volunteers with meaningful opportunities to make a difference in their communities.",
   icons: {
-    icon: '/favicon.png',
+    icon: "/favicon.png",
   },
 };
 
@@ -23,9 +25,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased bg-[#F7F7F7] pt-16">
+      <body className="flex flex-col min-h-screen antialiased bg-[var(--color-warm-gray)] pt-16">
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
