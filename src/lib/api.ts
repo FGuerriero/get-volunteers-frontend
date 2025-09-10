@@ -38,6 +38,9 @@ export const authAPI = {
 
 // Volunteers API
 export const volunteersAPI = {
+  create: (data: VolunteerCreate): Promise<Volunteer> =>
+    api.post('/volunteers', data).then(res => res.data),
+  
   getAll: (skip = 0, limit = 100): Promise<Volunteer[]> =>
     api.get(`/volunteers?skip=${skip}&limit=${limit}`).then(res => res.data),
   

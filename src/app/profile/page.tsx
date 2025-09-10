@@ -65,6 +65,7 @@ export default function ProfilePage() {
       setSuccess(true);
       setIsEditing(false);
     } catch (err) {
+      console.error(`Error on updating profile: ${err}`);
       setError("Failed to update profile");
     } finally {
       setSaving(false);
@@ -88,9 +89,7 @@ export default function ProfilePage() {
     <div className="page-container">
       <div className="container mx-auto px-4 max-w-2xl">
         <div className="flex justify-between items-center mb-6 sm:mb-8">
-          <h1 className="page-title">
-            My Profile
-          </h1>
+          <h1 className="page-title">My Profile</h1>
           {!isEditing && (
             <button
               onClick={() => setIsEditing(true)}
@@ -101,81 +100,59 @@ export default function ProfilePage() {
           )}
         </div>
 
-        {error && (
-          <div className="error-message">
-            {error}
-          </div>
-        )}
+        {error && <div className="error-message">{error}</div>}
 
         {success && (
-          <div className="success-message">
-            Profile updated successfully!
-          </div>
+          <div className="success-message">Profile updated successfully!</div>
         )}
 
         {!isEditing ? (
           // Read-only view
           <div className="card space-y-4 sm:p-8">
             <div>
-              <label className="label-text">
-                Name
-              </label>
+              <label className="label-text">Name</label>
               <p className="text-[var(--color-charcoal)] text-sm sm:text-base">
                 {volunteer.name}
               </p>
             </div>
             <div>
-              <label className="label-text">
-                Email
-              </label>
+              <label className="label-text">Email</label>
               <p className="text-[var(--color-charcoal)] text-sm sm:text-base">
                 {volunteer.email}
               </p>
             </div>
             <div>
-              <label className="label-text">
-                Phone
-              </label>
+              <label className="label-text">Phone</label>
               <p className="text-[var(--color-charcoal)] text-sm sm:text-base">
                 {volunteer.phone || "Not provided"}
               </p>
             </div>
             <div>
-              <label className="label-text">
-                Location
-              </label>
+              <label className="label-text">Location</label>
               <p className="text-[var(--color-charcoal)] text-sm sm:text-base">
                 {volunteer.location || "Not provided"}
               </p>
             </div>
             <div>
-              <label className="label-text">
-                About Me
-              </label>
+              <label className="label-text">About Me</label>
               <p className="text-[var(--color-charcoal)] text-sm sm:text-base">
                 {volunteer.about_me || "Not provided"}
               </p>
             </div>
             <div>
-              <label className="label-text">
-                Skills
-              </label>
+              <label className="label-text">Skills</label>
               <p className="text-[var(--color-charcoal)] text-sm sm:text-base">
                 {volunteer.skills || "Not provided"}
               </p>
             </div>
             <div>
-              <label className="label-text">
-                Volunteer Interests
-              </label>
+              <label className="label-text">Volunteer Interests</label>
               <p className="text-[var(--color-charcoal)] text-sm sm:text-base">
                 {volunteer.volunteer_interests || "Not provided"}
               </p>
             </div>
             <div>
-              <label className="label-text">
-                Availability
-              </label>
+              <label className="label-text">Availability</label>
               <p className="text-[var(--color-charcoal)] text-sm sm:text-base">
                 {volunteer.availability || "Not provided"}
               </p>
@@ -183,14 +160,9 @@ export default function ProfilePage() {
           </div>
         ) : (
           // Edit form
-          <form
-            onSubmit={handleSubmit}
-            className="card space-y-4 sm:p-8"
-          >
+          <form onSubmit={handleSubmit} className="card space-y-4 sm:p-8">
             <div>
-              <label className="label-text">
-                Name *
-              </label>
+              <label className="label-text">Name *</label>
               <input
                 type="text"
                 name="name"
@@ -200,9 +172,7 @@ export default function ProfilePage() {
               />
             </div>
             <div>
-              <label className="label-text">
-                Email *
-              </label>
+              <label className="label-text">Email *</label>
               <input
                 type="email"
                 name="email"
@@ -212,9 +182,7 @@ export default function ProfilePage() {
               />
             </div>
             <div>
-              <label className="label-text">
-                Phone
-              </label>
+              <label className="label-text">Phone</label>
               <input
                 type="tel"
                 name="phone"
@@ -223,9 +191,7 @@ export default function ProfilePage() {
               />
             </div>
             <div>
-              <label className="label-text">
-                Location
-              </label>
+              <label className="label-text">Location</label>
               <input
                 type="text"
                 name="location"
@@ -234,9 +200,7 @@ export default function ProfilePage() {
               />
             </div>
             <div>
-              <label className="label-text">
-                About Me
-              </label>
+              <label className="label-text">About Me</label>
               <textarea
                 name="about_me"
                 rows={3}
@@ -246,9 +210,7 @@ export default function ProfilePage() {
               />
             </div>
             <div>
-              <label className="label-text">
-                Skills
-              </label>
+              <label className="label-text">Skills</label>
               <textarea
                 name="skills"
                 rows={3}
@@ -258,9 +220,7 @@ export default function ProfilePage() {
               />
             </div>
             <div>
-              <label className="label-text">
-                Volunteer Interests
-              </label>
+              <label className="label-text">Volunteer Interests</label>
               <textarea
                 name="volunteer_interests"
                 rows={3}
@@ -270,9 +230,7 @@ export default function ProfilePage() {
               />
             </div>
             <div>
-              <label className="label-text">
-                Availability
-              </label>
+              <label className="label-text">Availability</label>
               <textarea
                 name="availability"
                 rows={2}
@@ -285,11 +243,7 @@ export default function ProfilePage() {
               <label className="label-text">
                 New Password (leave blank to keep current)
               </label>
-              <input
-                type="password"
-                name="password"
-                className="input-field"
-              />
+              <input type="password" name="password" className="input-field" />
             </div>
             <div className="flex gap-3">
               <button

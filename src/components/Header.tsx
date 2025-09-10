@@ -24,7 +24,8 @@ export default function Header() {
       try {
         const user = JSON.parse(userStr);
         setIsManager(user.is_manager || false);
-      } catch (e) {
+      } catch (err) {
+        console.error(`Manager access required: ${err}`);
         setIsManager(false);
       }
     }

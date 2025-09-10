@@ -28,6 +28,7 @@ export default function MyNeedsPage() {
       const myNeeds = await needsAPI.getAll();
       setNeeds(myNeeds);
     } catch (err) {
+      console.error(`Error on fetching Needs: ${err}`);
       setError("Failed to load needs");
     } finally {
       setLoading(false);
@@ -46,6 +47,7 @@ export default function MyNeedsPage() {
       setEditingNeed(null);
       fetchMyNeeds();
     } catch (err) {
+      console.error(`Error on submitting Need: ${err}`);
       setError("Failed to save need");
     } finally {
       setIsSubmitting(false);
@@ -58,6 +60,7 @@ export default function MyNeedsPage() {
         await needsAPI.delete(id);
         fetchMyNeeds();
       } catch (err) {
+        console.error(`Error on deleting Needs: ${err}`);
         setError("Failed to delete need");
       }
     }
@@ -90,10 +93,7 @@ export default function MyNeedsPage() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-6 sm:mb-8">
           <h1 className="page-title">My Needs</h1>
-          <button
-            onClick={openCreateModal}
-            className="btn-primary text-sm"
-          >
+          <button onClick={openCreateModal} className="btn-primary text-sm">
             Create Need
           </button>
         </div>
@@ -140,11 +140,15 @@ export default function MyNeedsPage() {
                     {need.num_volunteers_needed}
                   </div>
                   <div>
-                    <span className="font-medium text-[var(--color-coral)]">Format:</span>{" "}
+                    <span className="font-medium text-[var(--color-coral)]">
+                      Format:
+                    </span>{" "}
                     {need.format}
                   </div>
                   <div>
-                    <span className="font-medium text-[var(--color-coral)]">Contact:</span>{" "}
+                    <span className="font-medium text-[var(--color-coral)]">
+                      Contact:
+                    </span>{" "}
                     {need.contact_name}
                   </div>
                   {need.location_details && (
