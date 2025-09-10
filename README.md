@@ -12,21 +12,25 @@ A Next.js frontend application for connecting volunteers with meaningful opportu
 ## Getting Started
 
 1. Install dependencies:
+
 ```bash
 npm install
 ```
 
 2. Set up environment variables:
+
 ```bash
-cp .env.local.example .env.local
+cp .env.example .env
 ```
 
-3. Update the API URL in `.env.local` to point to your backend:
+3. Update the API URL in `.env` to point to your backend:
+
 ```
 NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
 ```
 
 4. Run the development server:
+
 ```bash
 npm run dev
 ```
@@ -40,6 +44,7 @@ This frontend is designed to work with the getVolunteers backend API.
 ### Backend Setup
 
 1. Clone the backend repository:
+
 ```bash
 git clone https://github.com/FGuerriero/get-volunteers-backend.git
 ```

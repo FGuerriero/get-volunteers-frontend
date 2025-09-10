@@ -1,0 +1,17 @@
+# Copyright (c) 2025 Fernando Guerriero Cardoso da Silva.
+# Created Date: Wed Sep 10 2025
+# SPDX-License-Identifier: MIT
+
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000/api/v1} # If you set this variable on a local .env file, docker-compose will assume that value, else it will inject http://localhost:8000/api/v1
+    image: get-volunteers-frontend:latest
+    container_name: get-volunteers-frontend
+    ports:
+      - "3000:3000"
+    restart: unless-stopped

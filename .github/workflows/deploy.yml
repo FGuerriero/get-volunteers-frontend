@@ -38,6 +38,8 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/${{ steps.get_repo_name.outputs.repo_name }}:latest
+          build-args: |
+            NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}
 
       - name: Deploy with SSH
         uses: appleboy/ssh-action@v0.1.7
@@ -57,7 +59,6 @@ jobs:
 
             # Execute the container with the new image
             docker run -d --restart=unless-stopped --name get-volunteers-frontend -p 3000:3000 \
-            -e NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} \
             ghcr.io/${{ steps.get_repo_name.outputs.repo_name }}:latest
 
             # Clean old Docker images to save storage
