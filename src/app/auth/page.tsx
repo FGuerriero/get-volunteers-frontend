@@ -53,10 +53,19 @@ export default function AuthPage() {
     setError(null);
 
     const formData = new FormData(e.currentTarget);
+    const password = formData.get("password") as string;
+    const confirmPassword = formData.get("confirmPassword") as string;
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      setLoading(false);
+      return;
+    }
+
     const registerData: VolunteerCreate = {
       name: formData.get("name") as string,
       email: formData.get("email") as string,
-      password: formData.get("password") as string,
+      password: password,
       phone: (formData.get("phone") as string) || undefined,
     };
 
@@ -117,6 +126,18 @@ export default function AuthPage() {
               className="input-field"
             />
           </div>
+
+          {!isLogin && (
+            <div>
+              <label className="label-text">Confirm Password</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                required
+                className="input-field"
+              />
+            </div>
+          )}
 
           <button
             type="submit"

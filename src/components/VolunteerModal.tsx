@@ -26,11 +26,20 @@ export default function VolunteerModal({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    
+    const password = formData.get("password") as string;
+    const confirmPassword = formData.get("confirmPassword") as string;
+
+    // Only validate password confirmation for new volunteers
+    if (!volunteer && password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
 
     const volunteerData: VolunteerCreate = {
       name: formData.get("name") as string,
       email: formData.get("email") as string,
-      password: (formData.get("password") as string) || "unchanged",
+      password: password || "unchanged",
       phone: (formData.get("phone") as string) || undefined,
       about_me: (formData.get("about_me") as string) || undefined,
       skills: (formData.get("skills") as string) || undefined,
@@ -93,6 +102,17 @@ export default function VolunteerModal({
                 className="input-field"
               />
             </div>
+            {!volunteer && (
+              <div>
+                <label className="label-text">Confirm Password *</label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  required
+                  className="input-field"
+                />
+              </div>
+            )}
             <div>
               <label className="label-text">Phone</label>
               <input
