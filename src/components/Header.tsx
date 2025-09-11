@@ -53,7 +53,7 @@ export default function Header() {
               className="sm:hidden"
             />
             <Image
-              src="/logo_without_slogan.png"
+              src="/black_and_white_logo_without_slogan.png"
               alt="getVolunteers"
               width={150}
               height={32}
