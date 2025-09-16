@@ -49,35 +49,35 @@ export const authAPI = {
 // Volunteers API
 export const volunteersAPI = {
   create: (data: VolunteerCreate): Promise<Volunteer> =>
-    api.post("/volunteers/", data).then((res) => res.data),
+    api.post("/volunteers", data).then((res) => res.data),
 
   getAll: (skip = 0, limit = 100): Promise<Volunteer[]> =>
-    api.get(`/volunteers/?skip=${skip}&limit=${limit}`).then((res) => res.data),
+    api.get(`/volunteers?skip=${skip}&limit=${limit}`).then((res) => res.data),
 
   getById: (id: number): Promise<Volunteer> =>
-    api.get(`/volunteers/${id}/`).then((res) => res.data),
+    api.get(`/volunteers/${id}`).then((res) => res.data),
 
   update: (id: number, data: VolunteerCreate): Promise<Volunteer> =>
-    api.put(`/volunteers/${id}/`, data).then((res) => res.data),
+    api.put(`/volunteers/${id}`, data).then((res) => res.data),
 
   delete: (id: number): Promise<void> =>
-    api.delete(`/volunteers/${id}/`).then((res) => res.data),
+    api.delete(`/volunteers/${id}`).then((res) => res.data),
 };
 
 // Needs API
 export const needsAPI = {
   create: (data: NeedCreate): Promise<Need> =>
-    api.post("/needs/", data).then((res) => res.data),
+    api.post("/needs", data).then((res) => res.data),
 
   getAll: (skip = 0, limit = 100): Promise<Need[]> =>
-    api.get(`/needs/?skip=${skip}&limit=${limit}`).then((res) => res.data),
+    api.get(`/needs?skip=${skip}&limit=${limit}`).then((res) => res.data),
 
   getById: (id: number): Promise<Need> =>
-    api.get(`/needs/${id}/`).then((res) => res.data),
+    api.get(`/needs/${id}`).then((res) => res.data),
 
   update: (id: number, data: NeedCreate): Promise<Need> =>
-    api.put(`/needs/${id}/`, data).then((res) => res.data),
+    api.put(`/needs/${id}`, data).then((res) => res.data),
 
   delete: (id: number): Promise<void> =>
-    api.delete(`/needs/${id}/`).then((res) => res.data),
+    api.delete(`/needs/${id}`).then((res) => res.data),
 };
