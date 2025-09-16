@@ -33,17 +33,17 @@ api.interceptors.request.use((config) => {
 // Auth API
 export const authAPI = {
   register: (data: VolunteerCreate): Promise<Volunteer> =>
-    api.post("/register/", data).then((res) => res.data),
+    api.post("/register", data).then((res) => res.data),
 
   login: (data: LoginForm): Promise<Token> =>
     api
-      .post("/login/", data, {
+      .post("/login", data, {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       })
       .then((res) => res.data),
 
   getProfile: (): Promise<Volunteer> =>
-    api.get("/volunteers/me/").then((res) => res.data),
+    api.get("/volunteers/me").then((res) => res.data),
 };
 
 // Volunteers API
