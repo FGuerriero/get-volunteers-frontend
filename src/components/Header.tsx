@@ -46,14 +46,14 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center flex-shrink-0">
             <Image
-              src="/favicon.png"
+              src="/logo_outlined.png"
               alt="getVolunteers"
               width={32}
               height={32}
               className="sm:hidden"
             />
             <Image
-              src="/black_and_white_logo_without_slogan.png"
+              src="/logo_without_slogan_outlined.png"
               alt="getVolunteers"
               width={150}
               height={32}
