@@ -1,6 +1,6 @@
 # getVolunteers Frontend
 
-🌐 **[Click here to see the live production site](https://getvolunteers.mooo.com/)**
+🌐 **[Click here to see the live production site](https://get-volunteers-frontend.onrender.com)**
 
 A Next.js frontend application for connecting volunteers with meaningful opportunities.
 
